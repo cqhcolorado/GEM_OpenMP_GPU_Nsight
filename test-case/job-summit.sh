@@ -1,0 +1,24 @@
+#!/bin/bash 
+### Begin BSUB Options 
+#BSUB -P fus123 
+#BSUB -J coupling_test
+#BSUB -W 00:10 
+#BSUB -nnodes 64 
+#BSUB -alloc_flags gpumps
+### End BSUB Options and begin shell commands
+
+cd $LS_SUBCWD
+module swap xl pgi
+module load fftw
+module load forge
+module load netcdf
+module load hdf5
+
+mkdir -p matrix
+mkdir -p out
+mkdir -p dump
+
+#export PGI_ACC_TIME=1
+
+#setenv OMP_NUM_THREADS 4
+jsrun -n 384 -a 7 -c 7 -g 1 -r 6 -l CPU-CPU -d packed -b packed:1 ./gem_main >run.out 2> run.err

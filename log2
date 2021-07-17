@@ -1,0 +1,2600 @@
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+test_init_pmove:
+     85, Generating target enter data map(create: s_counts(:))
+     92, Generating target enter data map(create: s_displ(:))
+     97, Generating target enter data map(create: r_counts(:))
+    102, Generating target enter data map(create: r_displ(:))
+    115, Generating map(to:xp(:)) 
+    116, Begin master region
+    118, End master region
+    124, Generating target enter data map(create: iz_arr(:))
+    145, !$omp target teams loop
+        144, Generating map(to:iz_arr(:),xp(:)) 
+        145, Generating "nvkernel_gem_pputil_test_init_pmove__F1L145_1" GPU kernel
+             Generating Tesla code
+          146, Loop parallelized across teams ! blockidx%x
+        145, Generating Multicore code
+          146, Loop parallelized across threads
+    145, Generating implicit map(tofrom:xp(:)) 
+    146, Loop not vectorized/parallelized: contains call
+    154, Generating update from(iz_arr(1:np))
+    160, Memory zero idiom, loop replaced by call to __c_mzero4
+    168, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+    187, !$omp target teams loop
+        185, Generating map(to:s_counts(:),s_displ(:)) 
+        187, Generating "nvkernel_gem_pputil_test_init_pmove__F1L187_2" GPU kernel
+             Generating Tesla code
+          188, Loop run sequentially 
+        187, Generating Multicore code
+    188, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    196, Generating update from(s_displ(:),s_counts(:))
+    208, !$omp target teams loop
+        205, Generating map(to:s_counts(:)) 
+        208, Generating "nvkernel_gem_pputil_test_init_pmove__F1L208_3" GPU kernel
+             Generating Tesla code
+          209, Loop parallelized across teams, threads(128) ! blockidx%x threadidx%x
+               Generating reduction(+:nsize)
+        208, Generating Multicore code
+          209, Loop parallelized across threads
+    208, Generating implicit copy(nsize) [if not already present]
+    209, Generated vector simd code for the loop containing reductions
+    222, Generating target enter data map(create: ipfill(:),iphole(:),ipsend(:),s_buf(:))
+    225, Generating target exit data map(delete: ipfill(:),iphole(:),ipsend(:),s_buf(:)) finalize
+    235, Generating target enter data map(create: ipfill(:),iphole(:),s_buf(:),ipsend(:))
+    242, Memory copy idiom, loop replaced by call to __c_mcopy4
+    247, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+    261, Generating update to(ipsend(:),iphole(:))
+    269, !$omp target teams loop
+        268, Generating map(to:iz_arr(:),xp(:),ipfill(:),iphole(:)) 
+        269, Generating "nvkernel_gem_pputil_test_init_pmove__F1L269_4" GPU kernel
+             Generating Tesla code
+          270, Loop run sequentially 
+        269, Generating Multicore code
+    279, Loop not vectorized/parallelized: potential early exits
+    282, Accelerator restriction: induction variable live-out from loop: i
+    289, Accelerator restriction: induction variable live-out from loop: i
+    307, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    311, sum reduction inlined
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+    320, Generating target enter data map(create: r_buf(:))
+    323, Generating target exit data map(delete: r_buf(:)) finalize
+    327, Generating target enter data map(create: r_buf(:))
+    334, sum reduction inlined
+         Loop not fused: different loop trip count
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+test_pmove:
+    399, !$omp target teams loop
+        398, Generating map(to:s_displ(:),xp(:),ipsend(:),s_counts(:),s_buf(:)) 
+        399, Generating "nvkernel_gem_pputil_test_pmove__F1L399_5" GPU kernel
+             Generating Tesla code
+          400, Loop parallelized across teams ! blockidx%x
+          405, Loop parallelized across threads(128) ! threadidx%x
+        399, Generating Multicore code
+          400, Loop parallelized across threads
+    399, Generating implicit map(tofrom:xp(:)) 
+    405, Loop is parallelizable
+         Generated vector simd code for the loop
+    420, !$omp target teams loop
+        417, Generating map(to:s_counts(:)) 
+        420, Generating "nvkernel_gem_pputil_test_pmove__F1L420_6" GPU kernel
+             Generating Tesla code
+          421, Loop parallelized across teams, threads(128) ! blockidx%x threadidx%x
+               Generating reduction(+:s_buf_length)
+        420, Generating Multicore code
+          421, Loop parallelized across threads
+    420, Generating implicit copy(s_buf_length) [if not already present]
+         Generating implicit map(tofrom:xp(:)) 
+    421, Generated vector simd code for the loop containing reductions
+    429, Generating update from(s_buf(1:s_buf_length))
+    442, Loop not vectorized/parallelized: contains call
+    452, Loop not vectorized/parallelized: contains call
+    499, sum reduction inlined
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+    505, !$omp target teams loop
+        504, Generating map(to:iphole(:),xp(:),ipfill(:)) 
+        505, Generating "nvkernel_gem_pputil_test_pmove__F1L505_7" GPU kernel
+             Generating Tesla code
+          506, Loop parallelized across teams, threads(128) ! blockidx%x threadidx%x
+        505, Generating Multicore code
+          506, Loop parallelized across threads
+    505, Generating implicit map(tofrom:xp(:)) 
+    506, Loop not vectorized: data dependency
+    524, Loop not vectorized/parallelized: contains call
+    541, Generating update to(r_buf(1:tot_count))
+    543, !$omp target teams loop
+        542, Generating map(to:r_buf(:),xp(:)) 
+        543, Generating "nvkernel_gem_pputil_test_pmove__F1L543_8" GPU kernel
+             Generating Tesla code
+          544, Loop parallelized across teams, threads(128) ! blockidx%x threadidx%x
+        543, Generating Multicore code
+          544, Loop parallelized across threads
+    543, Generating implicit map(tofrom:xp(:)) 
+    544, Generated vector simd code for the loop
+init_pmove:
+    606, Generating target enter data map(create: s_counts(:))
+    611, Generating target enter data map(create: s_displ(:))
+    616, Generating target enter data map(create: r_counts(:))
+    621, Generating target enter data map(create: r_displ(:))
+    627, Memory zero idiom, loop replaced by call to __c_mzero4
+    628, Loop not vectorized/parallelized: contains call
+    636, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    640, sum reduction inlined
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+    648, Generating target enter data map(create: ipfill(:),iphole(:),ipsend(:),s_buf(:))
+    651, Generating target exit data map(delete: ipfill(:),iphole(:),ipsend(:),s_buf(:)) finalize
+    661, Generating target enter data map(create: ipfill(:),iphole(:),s_buf(:),ipsend(:))
+    668, Memory copy idiom, loop replaced by call to __c_mcopy4
+    670, Loop not vectorized/parallelized: contains call
+    687, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    691, sum reduction inlined
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+    698, Generating target enter data map(create: r_buf(:))
+    701, Generating target exit data map(delete: r_buf(:)) finalize
+    705, Generating target enter data map(create: r_buf(:))
+    712, sum reduction inlined
+         Loop not fused: different loop trip count
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+pmove:
+    867, Generated vector simd code for the loop
+    875, Loop not vectorized/parallelized: contains call
+    885, Loop not vectorized/parallelized: contains call
+    897, sum reduction inlined
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop containing reductions
+    899, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+    909, Loop not vectorized/parallelized: contains call
+    923, Memory copy idiom, loop replaced by call to __c_mcopy8
+dispi:
+    968, Loop not vectorized/parallelized: contains call
+disp2i:
+    989, Loop not vectorized/parallelized: contains call
+    990, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+dispr:
+   1004, Loop not vectorized/parallelized: contains call
+disp2r:
+   1023, Loop not vectorized/parallelized: contains call
+   1024, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+ppsum_ra:
+   1106, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+ppsum_ia:
+   1129, Memory copy idiom, array assignment replaced by call to pgf90_mcopy4
+ppmax_ra:
+   1153, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+ppmax_ia:
+   1176, Memory copy idiom, array assignment replaced by call to pgf90_mcopy4
+ppmin_ra:
+   1200, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+ppmin_ia:
+   1223, Memory copy idiom, array assignment replaced by call to pgf90_mcopy4
+pptransp_c:
+   1254, Generated vector simd code for the loop
+   1263, Memory copy idiom, loop replaced by call to __c_mcopy16
+   1269, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+pptransp_r:
+   1300, Generated vector simd code for the loop
+   1309, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1315, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+pptransp_i:
+   1346, Generated vector simd code for the loop
+   1355, Memory copy idiom, loop replaced by call to __c_mcopy4
+   1361, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+pptransp2_c:
+   1400, Generated vector simd code for the loop
+   1406, Loop not vectorized/parallelized: too deeply nested
+   1409, Memory copy idiom, loop replaced by call to __c_mcopy16
+   1416, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+pptransp2_r:
+   1453, Generated vector simd code for the loop
+   1459, Loop not vectorized/parallelized: too deeply nested
+   1462, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1469, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+pptransp2_i:
+   1506, Generated vector simd code for the loop
+   1512, Loop not vectorized/parallelized: too deeply nested
+   1515, Memory copy idiom, loop replaced by call to __c_mcopy4
+   1522, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+guard_lin_add:
+   1612, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1613, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+guard_quad_add:
+   1621, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1622, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1627, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1628, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+guard_cub_add:
+   1636, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1637, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1642, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1643, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1648, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1649, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+guard_lin_add:
+   1744, Possible copy in and copy out of f in call to mpi_sendrecv
+   1747, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1748, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+guard_quad_add:
+   1753, Possible copy in and copy out of f in call to mpi_sendrecv
+   1756, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1757, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1759, Possible copy in and copy out of f in call to mpi_sendrecv
+   1762, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1763, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+guard_cub_add:
+   1768, Possible copy in and copy out of f in call to mpi_sendrecv
+   1771, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1772, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1774, Possible copy in and copy out of f in call to mpi_sendrecv
+   1777, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1778, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1780, Possible copy in and copy out of f in call to mpi_sendrecv
+   1783, Loop not fused: different controlling conditions
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1784, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+guard_lin_copy:
+   1789, Possible copy in and copy out of f in call to mpi_sendrecv
+guard_quad_copy:
+   1796, Possible copy in and copy out of f in call to mpi_sendrecv
+   1800, Possible copy in and copy out of f in call to mpi_sendrecv
+guard_cub_copy:
+   1807, Possible copy in and copy out of f in call to mpi_sendrecv
+   1811, Possible copy in and copy out of f in call to mpi_sendrecv
+   1815, Possible copy in and copy out of f in call to mpi_sendrecv
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+new_equil:
+    132, Generating target enter data map(create: t0s(:,:),radius(:,:),jfn(:),dbdr(:,:),tgis(:))
+    133, Generating target enter data map(create: gr(:,:),bdcrvb(:,:),grdgt(:,:),f(:),qhat(:,:))
+    134, Generating target enter data map(create: gxdgy(:,:),grcgt(:,:),capts(:,:),dydr(:,:),phincp(:))
+    135, Generating target enter data map(create: sf(:),vparsp(:,:),bfld(:,:),capns(:,:),xn0s(:,:))
+    136, Generating target enter data map(create: curvbz(:,:),psip(:),dipdr(:),psip2(:),thfnz(:))
+    137, Generating target enter data map(create: dbdth(:,:))
+    165, Loop not vectorized/parallelized: contains call
+    178, Loop not vectorized/parallelized: contains call
+    182, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+    191, Loop not vectorized/parallelized: contains call
+    201, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+    205, Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+    237, Loop not fused: function call before adjacent loop
+    277, Memory zero idiom, loop replaced by call to __c_mzero8
+    280, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    292, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    297, Loop not fused: different loop trip count
+         2 loops fused
+         FMA (fused multiply-add) instruction(s) generated
+    299, Invariant if transformation
+         Loop not fused: no successor loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+    344, Loop distributed: 3 new loops
+         Strip mine loop created
+         Loop interchange produces reordered loop nest: 346,344
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    346, Loop not fused: different loop trip count
+    355, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 2 times
+    360, FMA (fused multiply-add) instruction(s) generated
+    362, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    369, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+    394, Memory zero idiom, loop replaced by call to __c_mzero8
+    395, Memory zero idiom, loop replaced by call to __c_mzero8
+    396, Memory zero idiom, loop replaced by call to __c_mzero8
+    397, Memory zero idiom, loop replaced by call to __c_mzero8
+    398, Memory zero idiom, loop replaced by call to __c_mzero8
+    399, Memory zero idiom, loop replaced by call to __c_mzero8
+    400, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    412, Loop distributed: 3 new loops
+         Strip mine loop created
+         Loop interchange produces reordered loop nest: 414,412
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    414, Loop not fused: different loop trip count
+    423, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 2 times
+    428, Loop interchange produces reordered loop nest: 434,428
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    434, Loop not fused: different loop trip count
+         FMA (fused multiply-add) instruction(s) generated
+    444, Loop distributed: 2 new loops
+         Loop interchange produces reordered loop nest: 445,444
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    445, Loop not fused: different loop trip count
+    454, Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+    463, Loop interchange produces reordered loop nest: 464,463
+         Generated vector simd code for the loop
+    464, Loop not fused: different loop trip count
+         2 loops fused
+    473, Loop not fused: different loop trip count
+         2 loops fused
+    478, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+    488, Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+    500, Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+    506, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+    519, Loop distributed: 3 new loops
+         Strip mine loop created
+         Loop interchange produces reordered loop nest: 521,519
+         Loop not fused: function call before adjacent loop
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    521, Loop not fused: different loop trip count
+    530, Memory zero idiom, loop replaced by call to __c_mzero8
+    534, Loop not fused: dependence chain to sibling loop
+         2 loops fused
+         Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+    551, Loop not fused: different loop trip count
+         Generated vector simd code for the loop containing reductions
+    563, Loop not fused: different loop trip count
+         Generated vector simd code for the loop containing reductions
+    578, Array assignment / Forall at line 580,579 fused
+         Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    582, Array assignment / Forall at line 584,583 fused
+         Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    591, Array assignment / Forall at line 593,592 fused
+         Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    595, Array assignment / Forall at line 597,596 fused
+         Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    603, Array assignment / Forall at line 605,604 fused
+         Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    607, Array assignment / Forall at line 609,608 fused
+         Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    626, Loop not fused: different loop trip count
+    628, Generated vector simd code for the loop containing reductions
+    634, Loop not fused: different loop trip count
+         Generated vector simd code for the loop containing reductions
+    638, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+    641, Memory set idiom, loop replaced by call to __c_mset8
+    648, Loop not fused: different loop trip count
+         2 loops fused
+         Generated vector simd code for the loop
+    664, Loop not fused: different loop trip count
+    665, Generated vector simd code for the loop
+    675, Loop distributed: 2 new loops
+         Loop interchange produces reordered loop nest: 676,675
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    676, Loop not fused: different loop trip count
+    688, Loop interchange produces reordered loop nest: 689,688
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    689, Loop not fused: complex flow graph
+         FMA (fused multiply-add) instruction(s) generated
+    704, FMA (fused multiply-add) instruction(s) generated
+    712, Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    720, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    723, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    728, Array assignment / Forall at line 729 fused
+         Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    735, Memory zero idiom, loop replaced by call to __c_mzero8
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+dsinf:
+     88, Generated vector simd code for the loop
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+NVFORTRAN-W-0119-Redundant specification for starttm (gem_com.F90: 47)
+NVFORTRAN-W-0119-Redundant specification for lasttm (gem_com.F90: 47)
+NVFORTRAN-W-0119-Redundant specification for tottm (gem_com.F90: 47)
+  0 inform,   3 warnings,   0 severes, 0 fatal for gem_com
+new_gem_com:
+    240, Generating target enter data map(create: mims(:),lr(:),q(:))
+    258, Generating target enter data map(create: phi(:,:,:))
+    269, Generating target enter data map(create: ey(:,:,:),ex(:,:,:),ez(:,:,:))
+    287, Generating target enter data map(create: apar(:,:,:))
+    288, Generating target enter data map(create: delbx(:,:,:),dadz(:,:,:),delby(:,:,:),dpdz(:,:,:))
+    314, Generating target enter data map(create: w2(:,:),u3(:,:),z2(:,:),y2(:,:),x2(:,:),u2(:,:),y3(:,:),x3(:,:),w3(:,:),z3(:,:))
+    315, Generating target enter data map(create: u0i(:,:),pzi(:,:),xii(:,:),mu(:,:),w0(:,:),eki(:,:),z0i(:,:))
+    318, Generating target enter data map(create: w5(:,:),pif0(:,:))
+split_indices:
+    399, Loop not fused: different loop trip count
+         Loop unrolled 2 times
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+gkps_adiabatic_electron:
+     51, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+     52, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+     53, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+     54, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+     65, Loop not vectorized/parallelized: too deeply nested
+     66, Loop not vectorized/parallelized: too deeply nested
+     70, FMA (fused multiply-add) instruction(s) generated
+     73, FMA (fused multiply-add) instruction(s) generated
+     76, Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+     84, FMA (fused multiply-add) instruction(s) generated
+     86, FMA (fused multiply-add) instruction(s) generated
+     89, FMA (fused multiply-add) instruction(s) generated
+     91, FMA (fused multiply-add) instruction(s) generated
+     93, FMA (fused multiply-add) instruction(s) generated
+     95, FMA (fused multiply-add) instruction(s) generated
+     97, FMA (fused multiply-add) instruction(s) generated
+     99, FMA (fused multiply-add) instruction(s) generated
+    101, FMA (fused multiply-add) instruction(s) generated
+    103, FMA (fused multiply-add) instruction(s) generated
+    115, Loop not vectorized/parallelized: contains call
+         FMA (fused multiply-add) instruction(s) generated
+    116, FMA (fused multiply-add) instruction(s) generated
+    147, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: too deeply nested
+    148, Loop not vectorized/parallelized: too deeply nested
+    149, Loop not vectorized/parallelized: too deeply nested
+    150, FMA (fused multiply-add) instruction(s) generated
+    156, Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    165, Loop not vectorized: data dependency
+    195, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+    201, Loop not fused: different controlling conditions
+    202, Outer loop unrolled 2 times (completely unrolled)
+    203, Loop not fused: dependence chain to sibling loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+    213, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+    214, Loop unrolled 2 times (completely unrolled)
+    221, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+    224, Memory copy idiom, array assignment replaced by call to pgf90_mcopyz16
+    225, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    229, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+    233, Loop not fused: different loop trip count
+         Loop not vectorized/parallelized: too deeply nested
+    234, Loop not vectorized/parallelized: loop count too small
+    236, Loop not vectorized: non-stride-1 array reference
+    244, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    245, Loop not vectorized/parallelized: loop count too small
+         Generated vector simd code for the loop
+    248, Loop not vectorized/parallelized: contains call
+    268, Zero trip check eliminated
+         Loop not vectorized/parallelized: contains call
+    290, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+    291, Outer loop unrolled 2 times (completely unrolled)
+    295, Loop not fused: dependence chain to sibling loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 1 times
+         FMA (fused multiply-add) instruction(s) generated
+    307, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    310, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    313, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    314, Loop unrolled 2 times (completely unrolled)
+    324, Loop not fused: function call before adjacent loop
+    325, Loop not vectorized: non-stride-1 array reference
+    326, Loop unrolled 2 times (completely unrolled)
+    338, Copy in and copy out of u in call to dcmpy
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+    339, Copy in and copy out of u_zonal in call to dcmpy
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+    341, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+    346, Memory copy idiom, loop replaced by call to __c_mcopy16
+    350, Memory copy idiom, loop replaced by call to __c_mcopy16
+    358, Loop not vectorized/parallelized: loop count too small
+    360, Loop not vectorized: mixed data types
+    370, Loop not vectorized/parallelized: contains call
+    371, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+    375, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+    385, Loop interchange produces reordered loop nest: 386,387,385
+         Generated vector simd code for the loop
+    386, Loop not fused: function call before adjacent loop
+    406, Loop not fused: function call before adjacent loop
+    407, Loop not vectorized: non-stride-1 array reference
+    408, Loop unrolled 2 times (completely unrolled)
+    415, Copy in and copy out of u_zonal in call to dcmpy
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+    417, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+    422, Memory copy idiom, loop replaced by call to __c_mcopy16
+    424, Memory copy idiom, loop replaced by call to __c_mcopy16
+    427, Memory copy idiom, loop replaced by call to __c_mcopy16
+    436, Loop not vectorized/parallelized: loop count too small
+    438, Loop not vectorized: mixed data types
+    448, Loop not vectorized/parallelized: contains call
+    449, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+    453, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+    462, Loop interchange produces reordered loop nest: 463,464,462
+         Generated vector simd code for the loop
+    463, Loop not fused: function call before adjacent loop
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+adios2_comm_mod.F90:
+adios2_comm_init:
+     30, Loop unrolled 4 times
+adios2_comm_finalize:
+     39, Loop not vectorized/parallelized: contains call
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+coupling_core_edge.F90:
+cce_send_density:
+    179, Memory zero idiom, loop replaced by call to __c_mzero8
+    210, maxval reduction inlined
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+    212, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+    216, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+cce_receive_density:
+    277, Memory zero idiom, loop replaced by call to __c_mzero8
+cce_send_field:
+    361, Memory zero idiom, loop replaced by call to __c_mzero8
+cce_receive_field:
+    432, Memory zero idiom, loop replaced by call to __c_mzero8
+    469, Generated vector simd code for the loop
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+mapping.F90:
+mapping_init:
+    130, Loop not vectorized/parallelized: contains call
+    156, maxval reduction inlined
+         Loop unrolled 1 times (completely unrolled)
+         Loop not fused: function call before adjacent loop
+    160, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+    161, Loop not vectorized/parallelized: contains call
+    178, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+    194, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+    200, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    206, Memory copy idiom, loop replaced by call to __c_mcopy4
+    209, Copy in and copy out of thflx in call to init_1d_interpolation
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    210, Loop not vectorized/parallelized: contains call
+    230, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    231, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    232, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    233, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+mapping_gem_xgc_new:
+    627, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    628, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+generate_3d_density_gem:
+    654, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    656, Memory copy idiom, loop replaced by call to __c_mcopy8
+    658, Memory copy idiom, loop replaced by call to __c_mcopy8
+    664, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+mapping_gem_xgc_core_new:
+    798, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    807, Loop not vectorized/parallelized: contains call
+    810, FMA (fused multiply-add) instruction(s) generated
+    812, FMA (fused multiply-add) instruction(s) generated
+    816, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    823, Loop not fused: function call before adjacent loop
+         Loop unrolled 8 times
+    826, Memory copy idiom, loop replaced by call to __c_mcopy8
+    832, Memory copy idiom, loop replaced by call to __c_mcopy4
+    836, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+    843, Copy in and copy out of thflx in call to init_1d_interpolation
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+    844, Loop not vectorized/parallelized: contains call
+    850, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    853, Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+    857, Loop not fused: function call before adjacent loop
+         Loop unrolled 8 times
+    860, Memory copy idiom, loop replaced by call to __c_mcopy8
+    864, Loop not vectorized/parallelized: contains call
+    872, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+    873, Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: mixed data types
+    890, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    892, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+setup_gem_xgc_coef_new:
+   1000, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+   1007, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1008, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1009, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1010, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1014, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+   1022, Memory copy idiom, loop replaced by call to __c_mcopy4
+   1028, Copy in and copy out of thflx in call to init_1d_interpolation
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+   1030, Loop not vectorized/parallelized: contains call
+   1038, Loop not vectorized/parallelized: contains call
+   1040, FMA (fused multiply-add) instruction(s) generated
+search_y:
+   1101, FMA (fused multiply-add) instruction(s) generated
+mapping_xgc_gem_new:
+   1155, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1156, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+mapping_xgc_gem_core_new:
+   1369, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1377, Memory copy idiom, loop replaced by call to __c_mcopy4
+   1385, Memory zero idiom, loop replaced by call to __c_mzero8
+   1386, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1387, Loop not fused: function call before adjacent loop
+   1389, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+   1395, Loop not vectorized/parallelized: contains call
+   1398, FMA (fused multiply-add) instruction(s) generated
+   1400, FMA (fused multiply-add) instruction(s) generated
+   1404, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1405, Loop interchange produces reordered loop nest: 1406,1405
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: mixed data types
+   1406, Loop not fused: function call before adjacent loop
+   1428, Loop not vectorized/parallelized: contains call
+   1434, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1436, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1441, Copy in and copy out of field_gem_z_xgc_interpolation in call to init_1d_interpolation
+         Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+   1442, Loop not vectorized/parallelized: contains call
+         FMA (fused multiply-add) instruction(s) generated
+   1455, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+generate_field_gem:
+   1475, Memory copy idiom, loop replaced by call to __c_mcopy8
+setup_xgc_gem_coef_new:
+   1644, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1645, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1646, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1647, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1648, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1649, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   1650, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1651, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1652, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1653, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1654, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1655, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1660, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+   1674, Memory copy idiom, loop replaced by call to __c_mcopy4
+   1687, Copy in and copy out of thflx in call to init_1d_interpolation
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+   1688, Copy in and copy out of thflx in call to init_1d_interpolation
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+   1692, Memory zero idiom, loop replaced by call to __c_mzero8
+   1693, Loop not vectorized/parallelized: contains call
+   1701, Loop not vectorized/parallelized: contains call
+   1707, FMA (fused multiply-add) instruction(s) generated
+   1713, FMA (fused multiply-add) instruction(s) generated
+   1723, FMA (fused multiply-add) instruction(s) generated
+search_zeta:
+   1772, FMA (fused multiply-add) instruction(s) generated
+search_theta:
+   1792, Loop not vectorized/parallelized: contains call
+   1801, Loop not fused: function call before adjacent loop
+init_1d_interpolation:
+   2100, Loop unrolled 2 times (completely unrolled)
+   2102, Loop unrolled 2 times (completely unrolled)
+   2107, Loop not vectorized: non-stride-1 array reference
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+out3d.F90:
+xgc_3d_output:
+     60, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+     61, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+     64, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+     65, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+     66, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+     80, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+         Generated vector simd code for the loop
+     87, Memory copy idiom, loop replaced by call to __c_mcopy8
+     88, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+     93, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+         Generated vector simd code for the loop
+    100, Memory copy idiom, loop replaced by call to __c_mcopy8
+    101, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+pushe:
+     44, Generating update from(u2e(:),w2e(:),mue2(:),pze(:),pif0e(:),y2e(:),x2e(:),index(:),eke(:),ipass(:),w0e(:),u0e(:),z0e(:),z2e(:),xie(:),w5e(:))
+     46, Memory copy idiom, loop replaced by call to __c_mcopy8
+     47, Memory copy idiom, loop replaced by call to __c_mcopy8
+     48, Memory copy idiom, loop replaced by call to __c_mcopy8
+     49, Memory copy idiom, loop replaced by call to __c_mcopy8
+     50, Memory copy idiom, loop replaced by call to __c_mcopy8
+     51, Memory copy idiom, loop replaced by call to __c_mcopy8
+     52, Memory copy idiom, loop replaced by call to __c_mcopy8
+     53, Memory copy idiom, loop replaced by call to __c_mcopy8
+     55, Memory copy idiom, loop replaced by call to __c_mcopy8
+     56, Memory copy idiom, loop replaced by call to __c_mcopy8
+     57, Memory copy idiom, loop replaced by call to __c_mcopy8
+     58, Memory copy idiom, loop replaced by call to __c_mcopy8
+     59, Memory copy idiom, loop replaced by call to __c_mcopy8
+     60, Memory copy idiom, loop replaced by call to __c_mcopy8
+     61, Memory copy idiom, loop replaced by call to __c_mcopy8
+     62, Memory copy idiom, loop replaced by call to __c_mcopy8
+     72, Memory copy idiom, loop replaced by call to __c_mcopy8
+     73, Memory copy idiom, loop replaced by call to __c_mcopy8
+     74, Memory copy idiom, loop replaced by call to __c_mcopy8
+     75, Memory copy idiom, loop replaced by call to __c_mcopy8
+     76, Memory copy idiom, loop replaced by call to __c_mcopy8
+     77, Memory copy idiom, loop replaced by call to __c_mcopy8
+     78, Memory copy idiom, loop replaced by call to __c_mcopy8
+     79, Memory copy idiom, loop replaced by call to __c_mcopy8
+     81, Memory copy idiom, loop replaced by call to __c_mcopy8
+     82, Memory copy idiom, loop replaced by call to __c_mcopy8
+     83, Memory copy idiom, loop replaced by call to __c_mcopy8
+     84, Memory copy idiom, loop replaced by call to __c_mcopy8
+     85, Memory copy idiom, loop replaced by call to __c_mcopy8
+     86, Memory copy idiom, loop replaced by call to __c_mcopy8
+     87, Memory copy idiom, loop replaced by call to __c_mcopy8
+     88, Memory copy idiom, loop replaced by call to __c_mcopy8
+     90, Generating update to(u2e(:),w2e(:),mue2(:),pze(:),pif0e(:),y2e(:),x2e(:),index(:),eke(:),ipass(:),w0e(:),u0e(:),z0e(:),z2e(:),xie(:),w5e(:))
+    106, !$omp target teams loop
+        105, Generating map(tofrom:u3e(1:mme),u2e(1:mme)) 
+             Generating map(to:mue2(1:mme)) 
+             Generating map(tofrom:z2e(1:mme),y3e(1:mme),w3e(1:mme),w2e(1:mme),y2e(1:mme),x2e(1:mme),x3e(1:mme)) 
+             Generating map(to:thfnz(:),zeff(:)) 
+             Generating map(tofrom:z3e(1:mme)) 
+             Generating map(to:jfn(:),grdgt(:,:),dydr(:,:),psi(:),bfld(:,:),nue0(:),grcgt(:,:),gr(:,:),capne(:),ez(:,:,0:1),dbdth(:,:),curvbz(:,:),sf(:),capte(:),f(:),psip2(:),psip(:),ey(:,:,0:1),phincp(:),radius(:,:),bdcrvb(:,:)) 
+             Generating map(tofrom:mue3(1:mme)) 
+             Generating map(to:dbdr(:,:),t0e(:),dipdr(:),ex(:,:,0:1),qhat(:,:)) 
+        106, Generating "nvkernel_pushe__F1L106_1" GPU kernel
+             Generating Tesla code
+          107, Loop parallelized across teams, threads(128) ! blockidx%x threadidx%x
+        106, Generating Multicore code
+          107, Loop parallelized across threads
+    106, Generating implicit map(tofrom:t0e(:),curvbz(:,:),dbdr(:,:),gr(:,:),bdcrvb(:,:),qhat(:,:),dipdr(:),psip2(:),f(:),grdgt(:,:),capte(:),grcgt(:,:),dydr(:,:),gxdgy(:,:),psi(:),phincp(:),sf(:),capne(:),bfld(:,:),thfnz(:),nue0(:),psip(:),dbdth(:,:),jfn(:),zeff(:),xn0e(:),radius(:,:)) 
+    107, Invariant if transformation
+         Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+         FMA (fused multiply-add) instruction(s) generated
+update_electron_weight:
+   1463, Loop not vectorized/parallelized: contains call
+   1466, FMA (fused multiply-add) instruction(s) generated
+   1469, FMA (fused multiply-add) instruction(s) generated
+   1471, FMA (fused multiply-add) instruction(s) generated
+   1474, FMA (fused multiply-add) instruction(s) generated
+   1477, FMA (fused multiply-add) instruction(s) generated
+   1481, FMA (fused multiply-add) instruction(s) generated
+   1482, FMA (fused multiply-add) instruction(s) generated
+   1483, FMA (fused multiply-add) instruction(s) generated
+   1485, FMA (fused multiply-add) instruction(s) generated
+   1486, FMA (fused multiply-add) instruction(s) generated
+   1509, FMA (fused multiply-add) instruction(s) generated
+   1519, FMA (fused multiply-add) instruction(s) generated
+   1522, FMA (fused multiply-add) instruction(s) generated
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+gem_main.F90:
+gem_main:
+    119, Loop not vectorized/parallelized: contains call
+    180, Loop not vectorized/parallelized: contains call
+init:
+    285, Generating target enter data map(to: nonlin(:))
+    332, Memory zero idiom, loop replaced by call to __c_mzero8
+    333, Memory zero idiom, loop replaced by call to __c_mzero8
+    334, Memory zero idiom, loop replaced by call to __c_mzero8
+    348, Loop not vectorized/parallelized: contains call
+    359, Loop not vectorized/parallelized: contains call
+    384, Generating update to(q(:),mims(:))
+    387, Memory set idiom, loop replaced by call to __c_mset4
+    399, Generating update to(lr(:))
+    424, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    427, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    432, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    440, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+    471, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 2 times
+    474, Memory copy idiom, loop replaced by call to __c_mcopy8
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+    487, Loop not vectorized/parallelized: potential early exits
+    491, FMA (fused multiply-add) instruction(s) generated
+    503, Loop not vectorized/parallelized: potential early exits
+    507, FMA (fused multiply-add) instruction(s) generated
+    515, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+    562, Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    587, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    588, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    589, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    590, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    591, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    592, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+    593, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    594, Memory zero idiom, loop replaced by call to __c_mzero8
+    595, Memory zero idiom, loop replaced by call to __c_mzero8
+    596, Memory zero idiom, loop replaced by call to __c_mzero8
+    599, Generating update to(phi(:,:,:))
+    602, Generating update to(apar(:,:,:),dadz(:,:,:),delbx(:,:,:),delby(:,:,:),dpdz(:,:,:))
+    660, Generating update to(dbdr(:,:),dbdth(:,:),capts(:,:),psip(:),phincp(:),tgis(:),thfnz(:),xn0s(:,:),vparsp(:,:),bdcrvb(:,:),bfld(:,:),radius(:,:),jfn(:),grdgt(:,:),dipdr(:),gr(:,:),capns(:,:),grcgt(:,:),dydr(:,:),psip2(:),f(:),curvbz(:,:),t0s(:,:),sf(:),qhat(:,:),gxdgy(:,:))
+ppush:
+    733, !$omp target teams loop
+        732, Generating map(to:mm(:ns),psi(:)) 
+        733, Generating "nvkernel_ppush__F1L733_1" GPU kernel
+             Generating Tesla code
+          734, Loop parallelized across teams ! blockidx%x
+          824, Loop run sequentially 
+        733, Generating Multicore code
+          734, Loop parallelized across threads
+    733, Generating implicit map(tofrom:t0s(:,:),curvbz(:,:),dbdr(:,:),gr(:,:),bdcrvb(:,:),qhat(:,:),dipdr(:),psip2(:),f(:),grdgt(:,:),capts(:,:),grcgt(:,:),dydr(:,:),gxdgy(:,:),psi(:),phincp(:),radius(:,:),capns(:,:),bfld(:,:),vparsp(:,:),jfn(:),thfnz(:),psip(:),dbdth(:,:)) 
+         CUDA shared memory used for rhox,rhoy
+         Generating implicit copy(w2(:,ns)) [if not already present]
+         Generating implicit copyin(w0(:,ns),u2(:,ns)) [if not already present]
+         Generating implicit copy(z2(:,ns),z3(:,ns)) [if not already present]
+         Generating implicit copyin(y2(:,ns)) [if not already present]
+         Generating implicit copy(x2(:,ns)) [if not already present]
+         Generating implicit copyin(mu(:,ns)) [if not already present]
+         Generating implicit copy(x3(:,ns)) [if not already present]
+         Generating implicit copyin(dpdz(:,:,0),ex(:,:,0:1),ey(:,:,0:1),dadz(:,:,0),delbx(:,:,0),delby(:,:,0),apar(:,:,0)) [if not already present]
+         Generating implicit map(tofrom:xn0s(:,:)) 
+         Generating implicit copyin(ez(:,:,0:1),mims(ns),pif0(:,ns),lr(1),tgis(ns)) [if not already present]
+         Generating implicit copy(y3(:,ns),w5(:,ns)) [if not already present]
+         Generating implicit copyin(sf(:),q(ns),nonlin(ns)) [if not already present]
+         Generating implicit copy(w3(:,ns),u3(:,ns)) [if not already present]
+    740, FMA (fused multiply-add) instruction(s) generated
+    742, FMA (fused multiply-add) instruction(s) generated
+    744, FMA (fused multiply-add) instruction(s) generated
+    747, FMA (fused multiply-add) instruction(s) generated
+    750, FMA (fused multiply-add) instruction(s) generated
+    753, FMA (fused multiply-add) instruction(s) generated
+    755, FMA (fused multiply-add) instruction(s) generated
+    757, FMA (fused multiply-add) instruction(s) generated
+    759, FMA (fused multiply-add) instruction(s) generated
+    761, FMA (fused multiply-add) instruction(s) generated
+    763, FMA (fused multiply-add) instruction(s) generated
+    765, FMA (fused multiply-add) instruction(s) generated
+    767, FMA (fused multiply-add) instruction(s) generated
+    769, FMA (fused multiply-add) instruction(s) generated
+    772, FMA (fused multiply-add) instruction(s) generated
+    774, FMA (fused multiply-add) instruction(s) generated
+    776, FMA (fused multiply-add) instruction(s) generated
+    779, FMA (fused multiply-add) instruction(s) generated
+    780, FMA (fused multiply-add) instruction(s) generated
+    781, FMA (fused multiply-add) instruction(s) generated
+    782, FMA (fused multiply-add) instruction(s) generated
+    783, FMA (fused multiply-add) instruction(s) generated
+    784, FMA (fused multiply-add) instruction(s) generated
+    785, FMA (fused multiply-add) instruction(s) generated
+    787, FMA (fused multiply-add) instruction(s) generated
+    788, FMA (fused multiply-add) instruction(s) generated
+    789, FMA (fused multiply-add) instruction(s) generated
+    790, FMA (fused multiply-add) instruction(s) generated
+    791, FMA (fused multiply-add) instruction(s) generated
+    798, FMA (fused multiply-add) instruction(s) generated
+    803, FMA (fused multiply-add) instruction(s) generated
+    824, Loop not vectorized/parallelized: contains call
+    826, FMA (fused multiply-add) instruction(s) generated
+    827, FMA (fused multiply-add) instruction(s) generated
+    830, FMA (fused multiply-add) instruction(s) generated
+    831, FMA (fused multiply-add) instruction(s) generated
+    847, FMA (fused multiply-add) instruction(s) generated
+    848, FMA (fused multiply-add) instruction(s) generated
+    849, FMA (fused multiply-add) instruction(s) generated
+    868, FMA (fused multiply-add) instruction(s) generated
+    872, FMA (fused multiply-add) instruction(s) generated
+    873, FMA (fused multiply-add) instruction(s) generated
+    878, FMA (fused multiply-add) instruction(s) generated
+    879, FMA (fused multiply-add) instruction(s) generated
+    880, FMA (fused multiply-add) instruction(s) generated
+    886, FMA (fused multiply-add) instruction(s) generated
+    891, FMA (fused multiply-add) instruction(s) generated
+    893, FMA (fused multiply-add) instruction(s) generated
+    901, FMA (fused multiply-add) instruction(s) generated
+    902, FMA (fused multiply-add) instruction(s) generated
+    903, FMA (fused multiply-add) instruction(s) generated
+    904, FMA (fused multiply-add) instruction(s) generated
+    949, FMA (fused multiply-add) instruction(s) generated
+    953, FMA (fused multiply-add) instruction(s) generated
+    955, FMA (fused multiply-add) instruction(s) generated
+    956, FMA (fused multiply-add) instruction(s) generated
+    973, FMA (fused multiply-add) instruction(s) generated
+    974, FMA (fused multiply-add) instruction(s) generated
+    980, FMA (fused multiply-add) instruction(s) generated
+    982, FMA (fused multiply-add) instruction(s) generated
+    984, FMA (fused multiply-add) instruction(s) generated
+    987, FMA (fused multiply-add) instruction(s) generated
+    990, FMA (fused multiply-add) instruction(s) generated
+    994, FMA (fused multiply-add) instruction(s) generated
+    995, FMA (fused multiply-add) instruction(s) generated
+    996, FMA (fused multiply-add) instruction(s) generated
+    998, FMA (fused multiply-add) instruction(s) generated
+    999, FMA (fused multiply-add) instruction(s) generated
+   1004, FMA (fused multiply-add) instruction(s) generated
+cpush:
+   1178, Loop not fused: function call before adjacent loop
+         2 loops fused
+         Generated vector simd code for the loop
+         Residual loop unrolled 2 times (completely unrolled)
+   1182, Memory zero idiom, loop replaced by call to __c_mzero8
+   1183, Memory zero idiom, loop replaced by call to __c_mzero8
+   1184, Memory zero idiom, loop replaced by call to __c_mzero8
+   1185, Memory zero idiom, loop replaced by call to __c_mzero8
+   1214, !$omp target teams loop
+       1213, Generating map(tofrom:mypfl_es(:),mypfl_em(:),y3(:,ns),w2(:,ns)) 
+             Generating map(to:psi(:)) 
+             Generating map(tofrom:mynos,myke,myavewi) 
+             Generating map(to:mm(:ns)) 
+             Generating map(tofrom:myefl_em(:),myefl_es(:)) 
+       1214, Generating "nvkernel_cpush__F1L1214_2" GPU kernel
+             Generating Tesla code
+         1216, Loop parallelized across teams ! blockidx%x
+         1307, Loop run sequentially 
+       1214, Generating Multicore code
+         1216, Loop parallelized across threads
+   1214, Generating implicit map(tofrom:t0s(:,:),curvbz(:,:),dbdr(:,:),gr(:,:),bdcrvb(:,:),qhat(:,:),dipdr(:),psip2(:),f(:),grdgt(:,:),capts(:,:),grcgt(:,:),dydr(:,:),gxdgy(:,:),psi(:),phincp(:),radius(:,:),capns(:,:),bfld(:,:),vparsp(:,:),psip(:),dbdth(:,:),jfn(:),thfnz(:)) 
+         CUDA shared memory used for rhoy,rhox
+         Generating implicit copy(x2(:,:),u2(:,:)) [if not already present]
+         Generating implicit copyin(lr(1),pif0(:,:),mims(:),ez(:,:,0:1)) [if not already present]
+         Generating implicit copy(w5(:,:),x3(:,:),z3(:,:),z2(:,:)) [if not already present]
+         Generating implicit copyin(dpdz(:,:,0),ex(:,:,0:1),ey(:,:,0:1),dadz(:,:,0),delbx(:,:,0),delby(:,:,0),apar(:,:,0)) [if not already present]
+         Generating implicit map(tofrom:xn0s(:,:)) 
+         Generating implicit copyin(mu(:,:)) [if not already present]
+         Generating implicit copy(y2(:,:)) [if not already present]
+         Generating implicit copyin(sf(:),w0(:,:)) [if not already present]
+         Generating implicit copy(u3(:,:)) [if not already present]
+         Generating implicit copyin(q(:),nonlin(:)) [if not already present]
+         Generating implicit copy(w3(:,:)) [if not already present]
+   1216, Scalar last value needed after loop for myke at line 1590
+   1219, FMA (fused multiply-add) instruction(s) generated
+   1222, FMA (fused multiply-add) instruction(s) generated
+   1224, FMA (fused multiply-add) instruction(s) generated
+   1227, FMA (fused multiply-add) instruction(s) generated
+   1230, FMA (fused multiply-add) instruction(s) generated
+   1233, FMA (fused multiply-add) instruction(s) generated
+   1235, FMA (fused multiply-add) instruction(s) generated
+   1237, FMA (fused multiply-add) instruction(s) generated
+   1239, FMA (fused multiply-add) instruction(s) generated
+   1241, FMA (fused multiply-add) instruction(s) generated
+   1243, FMA (fused multiply-add) instruction(s) generated
+   1245, FMA (fused multiply-add) instruction(s) generated
+   1247, FMA (fused multiply-add) instruction(s) generated
+   1249, FMA (fused multiply-add) instruction(s) generated
+   1252, FMA (fused multiply-add) instruction(s) generated
+   1254, FMA (fused multiply-add) instruction(s) generated
+   1256, FMA (fused multiply-add) instruction(s) generated
+   1259, FMA (fused multiply-add) instruction(s) generated
+   1260, FMA (fused multiply-add) instruction(s) generated
+   1261, FMA (fused multiply-add) instruction(s) generated
+   1262, FMA (fused multiply-add) instruction(s) generated
+   1263, FMA (fused multiply-add) instruction(s) generated
+   1264, FMA (fused multiply-add) instruction(s) generated
+   1265, FMA (fused multiply-add) instruction(s) generated
+   1267, FMA (fused multiply-add) instruction(s) generated
+   1268, FMA (fused multiply-add) instruction(s) generated
+   1269, FMA (fused multiply-add) instruction(s) generated
+   1271, FMA (fused multiply-add) instruction(s) generated
+   1272, FMA (fused multiply-add) instruction(s) generated
+   1279, FMA (fused multiply-add) instruction(s) generated
+   1284, FMA (fused multiply-add) instruction(s) generated
+   1307, Loop not vectorized/parallelized: contains call
+   1311, FMA (fused multiply-add) instruction(s) generated
+   1312, FMA (fused multiply-add) instruction(s) generated
+   1314, FMA (fused multiply-add) instruction(s) generated
+   1315, FMA (fused multiply-add) instruction(s) generated
+   1331, FMA (fused multiply-add) instruction(s) generated
+   1332, FMA (fused multiply-add) instruction(s) generated
+   1333, FMA (fused multiply-add) instruction(s) generated
+   1356, FMA (fused multiply-add) instruction(s) generated
+   1360, FMA (fused multiply-add) instruction(s) generated
+   1361, FMA (fused multiply-add) instruction(s) generated
+   1366, FMA (fused multiply-add) instruction(s) generated
+   1368, FMA (fused multiply-add) instruction(s) generated
+   1370, FMA (fused multiply-add) instruction(s) generated
+   1377, FMA (fused multiply-add) instruction(s) generated
+   1382, FMA (fused multiply-add) instruction(s) generated
+   1384, FMA (fused multiply-add) instruction(s) generated
+   1392, FMA (fused multiply-add) instruction(s) generated
+   1393, FMA (fused multiply-add) instruction(s) generated
+   1394, FMA (fused multiply-add) instruction(s) generated
+   1395, FMA (fused multiply-add) instruction(s) generated
+   1422, FMA (fused multiply-add) instruction(s) generated
+   1426, FMA (fused multiply-add) instruction(s) generated
+   1428, FMA (fused multiply-add) instruction(s) generated
+   1429, FMA (fused multiply-add) instruction(s) generated
+   1446, FMA (fused multiply-add) instruction(s) generated
+   1447, FMA (fused multiply-add) instruction(s) generated
+   1521, FMA (fused multiply-add) instruction(s) generated
+   1523, FMA (fused multiply-add) instruction(s) generated
+   1525, FMA (fused multiply-add) instruction(s) generated
+   1528, FMA (fused multiply-add) instruction(s) generated
+   1531, FMA (fused multiply-add) instruction(s) generated
+   1535, FMA (fused multiply-add) instruction(s) generated
+   1536, FMA (fused multiply-add) instruction(s) generated
+   1537, FMA (fused multiply-add) instruction(s) generated
+   1539, FMA (fused multiply-add) instruction(s) generated
+   1540, FMA (fused multiply-add) instruction(s) generated
+   1545, FMA (fused multiply-add) instruction(s) generated
+   1609, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1613, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1617, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1621, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1625, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1629, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1633, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1637, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+grad:
+   1757, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   1758, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   1760, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1761, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1764, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1765, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+grid1:
+   1810, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1811, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1812, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1819, Loop not vectorized/parallelized: too deeply nested
+   1820, Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1821, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   1822, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1823, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1824, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   1845, !$omp target teams loop
+       1844, Generating map(to:w111(1:mme),w110(1:mme),w3e(1:mme),y3e(1:mme),z3e(1:mme),x3e(1:mme)) 
+             Generating map(tofrom:myupar(:,:,:)) 
+             Generating map(to:w010(1:mme),w000(1:mme),w100(1:mme),u3e(1:mme),w011(1:mme),w001(1:mme),w101(1:mme),mm(:ns)) 
+             Generating map(tofrom:myden(:,:,:),mydene(:,:,:)) 
+       1845, Generating "nvkernel_grid1__F1L1845_3" GPU kernel
+             Generating Tesla code
+         1847, Loop parallelized across teams ! blockidx%x
+         1938, Loop run sequentially 
+       1845, Generating Multicore code
+         1847, Loop parallelized across threads
+   1845, Generating implicit map(tofrom:radius(:,:),bfld(:,:),dbdr(:,:),gr(:,:),qhat(:,:),dbdth(:,:),psip(:),f(:),grcgt(:,:),dydr(:,:),gxdgy(:,:),jfn(:)) 
+         CUDA shared memory used for rhoy,rhox
+         Generating implicit map(tofrom:thfnz(:)) 
+         Generating implicit copyin(w3(:,ns),z3(:,ns),y3(:,ns),lr(1),mims(ns),mu(:,ns),q(ns),u3(:,ns),x3(:,ns)) [if not already present]
+   1851, FMA (fused multiply-add) instruction(s) generated
+   1854, FMA (fused multiply-add) instruction(s) generated
+   1856, FMA (fused multiply-add) instruction(s) generated
+   1859, FMA (fused multiply-add) instruction(s) generated
+   1862, FMA (fused multiply-add) instruction(s) generated
+   1869, FMA (fused multiply-add) instruction(s) generated
+   1871, FMA (fused multiply-add) instruction(s) generated
+   1873, FMA (fused multiply-add) instruction(s) generated
+   1877, FMA (fused multiply-add) instruction(s) generated
+   1879, FMA (fused multiply-add) instruction(s) generated
+   1881, FMA (fused multiply-add) instruction(s) generated
+   1883, FMA (fused multiply-add) instruction(s) generated
+   1885, FMA (fused multiply-add) instruction(s) generated
+   1887, FMA (fused multiply-add) instruction(s) generated
+   1893, FMA (fused multiply-add) instruction(s) generated
+   1898, FMA (fused multiply-add) instruction(s) generated
+   1938, Loop not vectorized/parallelized: contains a parallel region
+   1940, FMA (fused multiply-add) instruction(s) generated
+   1941, FMA (fused multiply-add) instruction(s) generated
+   1942, FMA (fused multiply-add) instruction(s) generated
+   1948, FMA (fused multiply-add) instruction(s) generated
+   2051, Loop interchange produces reordered loop nest: 2053,2052,2051
+         Loop not vectorized: non-stride-1 array reference
+   2053, Loop not fused: different loop trip count
+   2066, Loop not fused: different loop trip count
+         FMA (fused multiply-add) instruction(s) generated
+   2067, Loop not vectorized: non-stride-1 array reference
+   2068, Loop unrolled 2 times (completely unrolled)
+   2080, Loop interchange produces reordered loop nest: 2081,2082,2080
+         Generated vector simd code for the loop
+   2095, Memory zero idiom, loop replaced by call to __c_mzero8
+   2096, Memory zero idiom, loop replaced by call to __c_mzero8
+   2097, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   2098, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   2105, !$omp target teams loop
+       2104, Generating map(tofrom:mydene(:,:,:)) 
+             Generating map(to:w111(1:mme),w110(1:mme),w3e(1:mme),y3e(1:mme),z3e(1:mme),x3e(1:mme)) 
+             Generating map(tofrom:myupar(:,:,:)) 
+             Generating map(to:w010(1:mme),w000(1:mme),w100(1:mme),u3e(1:mme),w011(1:mme),w001(1:mme),w101(1:mme)) 
+       2105, Generating "nvkernel_grid1__F1L2105_4" GPU kernel
+             Generating Tesla code
+         2106, Loop parallelized across teams, threads(128) ! blockidx%x threadidx%x
+       2105, Generating Multicore code
+         2106, Loop parallelized across threads
+   2105, Generating implicit map(tofrom:myupar(:,:,:),mydene(:,:,:)) 
+   2106, Loop not vectorized/parallelized: contains a parallel region
+   2220, Loop interchange produces reordered loop nest: 2222,2221,2220
+         Generated vector simd code for the loop
+   2222, Loop not fused: different loop trip count
+   2263, Loop interchange produces reordered loop nest: 2264,2265,2263
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   2264, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+modes2:
+   2301, Loop not vectorized/parallelized: contains call
+   2302, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+restart:
+   2350, Loop not vectorized/parallelized: contains call
+   2365, Loop not vectorized/parallelized: contains call
+   2378, Loop not vectorized/parallelized: contains call
+   2391, Loop not vectorized/parallelized: contains call
+   2399, Loop not vectorized/parallelized: contains call
+   2405, Loop not vectorized/parallelized: contains call
+parperp:
+   2472, FMA (fused multiply-add) instruction(s) generated
+weight:
+   2496, Loop not fused: no successor loop
+         Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+   2511, Loop not fused: no successor loop
+         Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+   2526, Loop not fused: different loop trip count
+         Loop not vectorized: mixed data types
+         Loop unrolled 8 times
+   2535, Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+gkps:
+   2602, Loop not vectorized/parallelized: too deeply nested
+   2603, Loop not vectorized/parallelized: too deeply nested
+   2606, FMA (fused multiply-add) instruction(s) generated
+   2609, FMA (fused multiply-add) instruction(s) generated
+   2611, Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   2618, FMA (fused multiply-add) instruction(s) generated
+   2620, FMA (fused multiply-add) instruction(s) generated
+   2623, FMA (fused multiply-add) instruction(s) generated
+   2625, FMA (fused multiply-add) instruction(s) generated
+   2627, FMA (fused multiply-add) instruction(s) generated
+   2629, FMA (fused multiply-add) instruction(s) generated
+   2631, FMA (fused multiply-add) instruction(s) generated
+   2633, FMA (fused multiply-add) instruction(s) generated
+   2635, FMA (fused multiply-add) instruction(s) generated
+   2637, FMA (fused multiply-add) instruction(s) generated
+   2649, Loop not vectorized/parallelized: contains call
+         FMA (fused multiply-add) instruction(s) generated
+   2650, FMA (fused multiply-add) instruction(s) generated
+   2677, Loop not vectorized/parallelized: too deeply nested
+   2678, Loop not vectorized/parallelized: too deeply nested
+   2679, Loop not vectorized/parallelized: too deeply nested
+   2680, FMA (fused multiply-add) instruction(s) generated
+   2683, FMA (fused multiply-add) instruction(s) generated
+   2685, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   2692, Loop not vectorized: data dependency
+   2704, Loop not vectorized/parallelized: contains call
+   2722, Zero trip check eliminated
+         Loop not vectorized/parallelized: contains call
+   2738, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   2739, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   2742, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   2743, Loop not vectorized: non-stride-1 array reference
+   2744, Loop unrolled 2 times (completely unrolled)
+   2750, Copy in and copy out of u in call to dcmpy
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   2753, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   2757, Memory copy idiom, loop replaced by call to __c_mcopy16
+   2760, Memory copy idiom, loop replaced by call to __c_mcopy16
+   2766, Loop not vectorized/parallelized: loop count too small
+   2768, Loop not vectorized: mixed data types
+   2776, Loop not vectorized/parallelized: contains call
+   2777, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   2781, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   2788, Loop interchange produces reordered loop nest: 2789,2790,2788
+         Generated vector simd code for the loop
+   2789, Loop not fused: function call before adjacent loop
+eqmo:
+   2821, Memory zero idiom, loop replaced by call to __c_mzero8
+   2822, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   2823, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   2825, Loop interchange produces reordered loop nest: 2826,2827,2825
+         Generated vector simd code for the loop
+   2826, Loop not fused: function call before adjacent loop
+   2834, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   2842, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   2850, Loop interchange produces reordered loop nest: 2851,2850
+         Loop not vectorized: non-stride-1 array reference
+   2851, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   2862, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   2870, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   2878, Loop interchange produces reordered loop nest: 2879,2878
+         Loop not vectorized: non-stride-1 array reference
+   2879, Loop not fused: different loop trip count
+         FMA (fused multiply-add) instruction(s) generated
+   2889, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+spec:
+   2929, Loop not fused: function call before adjacent loop
+         2 loops fused
+         Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+ezamp:
+   3051, Loop not fused: different loop trip count
+         FMA (fused multiply-add) instruction(s) generated
+   3054, Loop not vectorized: data dependency
+   3056, Loop unrolled 2 times (completely unrolled)
+   3113, Loop not fused: complex flow graph
+         Loop not vectorized/parallelized: too deeply nested
+   3114, Loop not vectorized/parallelized: too deeply nested
+   3115, FMA (fused multiply-add) instruction(s) generated
+   3116, Zero trip check eliminated
+   3119, Zero trip check eliminated
+         Loop not vectorized: data dependency
+   3135, Zero trip check eliminated
+         Loop not vectorized/parallelized: contains call
+   3143, Loop not vectorized/parallelized: contains call
+   3163, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   3164, Loop not vectorized: non-stride-1 array reference
+   3165, Loop unrolled 2 times (completely unrolled)
+   3173, Copy in and copy out of u in call to dcmpy
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   3175, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   3179, Memory copy idiom, loop replaced by call to __c_mcopy16
+   3182, Memory copy idiom, loop replaced by call to __c_mcopy16
+   3188, Loop not vectorized/parallelized: loop count too small
+   3190, Loop not vectorized: mixed data types
+   3198, Loop not vectorized/parallelized: contains call
+   3199, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   3203, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   3209, Loop interchange produces reordered loop nest: 3210,3211,3209
+         Generated vector simd code for the loop
+   3210, Loop not fused: function call before adjacent loop
+filter:
+   3256, Loop interchange produces reordered loop nest: 3257,3258,3256
+         Generated vector simd code for the loop
+   3257, Loop not fused: different loop trip count
+   3264, Loop not vectorized/parallelized: loop count too small
+   3265, Loop interchange produces reordered loop nest: 3266,3265
+         Loop unrolled 8 times
+   3274, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   3278, Loop not fused: function call before adjacent loop
+   3279, Loop unrolled 8 times
+   3285, Copy in of rbfs in call to mpi_sendrecv
+         Copy in and copy out of lbfr in call to mpi_sendrecv
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   3291, Copy in of lbfs in call to mpi_sendrecv
+         Copy in and copy out of rbfr in call to mpi_sendrecv
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   3298, Loop not fused: function call before adjacent loop
+   3299, Loop not vectorized: non-stride-1 array reference
+   3311, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   3315, Loop not fused: function call before adjacent loop
+   3316, Loop unrolled 8 times
+   3322, Copy in of rbfs in call to mpi_sendrecv
+         Copy in and copy out of lbfr in call to mpi_sendrecv
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   3328, Copy in of lbfs in call to mpi_sendrecv
+         Copy in and copy out of rbfr in call to mpi_sendrecv
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   3335, FMA (fused multiply-add) instruction(s) generated
+   3336, Loop not vectorized: non-stride-1 array reference
+   3352, Loop interchange produces reordered loop nest: 3353,3352
+         Loop unrolled 8 times
+   3353, Loop not fused: function call before adjacent loop
+   3358, Copy in of lbfs in call to mpi_sendrecv
+         Copy in and copy out of rbfr in call to mpi_sendrecv
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   3364, Loop interchange produces reordered loop nest: 3365,3364
+         Loop not vectorized: non-stride-1 array reference
+   3365, Loop not fused: different loop trip count
+         FMA (fused multiply-add) instruction(s) generated
+   3371, Loop not fused: function call before adjacent loop
+   3373, Loop unrolled 8 times
+   3382, Loop interchange produces reordered loop nest: 3383,3384,3382
+         Generated vector simd code for the loop
+   3383, Loop not fused: function call before adjacent loop
+   3414, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   3415, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   3416, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   3417, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   3457, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+yveck:
+   3510, Loop interchange produces reordered loop nest: 3511,3510
+         Generated vector simd code for the loop
+   3518, Loop not vectorized/parallelized: contains call
+   3519, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   3523, Generated vector simd code for the loop
+   3527, Loop not vectorized/parallelized: contains call
+   3528, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   3532, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   3540, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   3550, Loop not vectorized/parallelized: contains call
+   3564, Loop unrolled 5 times (completely unrolled)
+yveck1:
+   3592, Loop interchange produces reordered loop nest: 3592,3594,3593
+   3593, Generated vector simd code for the loop
+   3601, Loop not vectorized/parallelized: contains call
+   3602, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   3606, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   3614, Memory zero idiom, loop replaced by call to __c_mzero16
+   3615, Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+   3617, Loop unrolled 7 times (completely unrolled)
+ran2:
+   3656, Loop not vectorized: may not be beneficial
+loadi:
+   3713, Loop not vectorized/parallelized: potential early exits
+   3721, FMA (fused multiply-add) instruction(s) generated
+   3733, FMA (fused multiply-add) instruction(s) generated
+   3735, FMA (fused multiply-add) instruction(s) generated
+   3741, FMA (fused multiply-add) instruction(s) generated
+   3744, FMA (fused multiply-add) instruction(s) generated
+   3747, FMA (fused multiply-add) instruction(s) generated
+   3749, FMA (fused multiply-add) instruction(s) generated
+   3751, FMA (fused multiply-add) instruction(s) generated
+   3752, FMA (fused multiply-add) instruction(s) generated
+   3753, FMA (fused multiply-add) instruction(s) generated
+   3755, FMA (fused multiply-add) instruction(s) generated
+   3759, FMA (fused multiply-add) instruction(s) generated
+   3766, FMA (fused multiply-add) instruction(s) generated
+   3777, Generated vector simd code for the loop containing reductions
+   3797, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   3814, Generating update to(x2(:,ns))
+   3818, Generating update to(x3(:,ns))
+   3822, Generating update to(y2(:,ns))
+   3826, Generating update to(y3(:,ns))
+   3830, Generating update to(z2(:,ns))
+   3834, Generating update to(z3(:,ns))
+   3838, Generating update to(u2(:,ns))
+   3842, Generating update to(u3(:,ns))
+   3846, Generating update to(w2(:,ns))
+   3850, Generating update to(w3(:,ns))
+   3854, Generating update to(mu(:,ns))
+   3859, Generating update to(xii(:,ns))
+   3863, Generating update to(z0i(:,ns))
+   3867, Generating update to(pzi(:,ns))
+   3871, Generating update to(eki(:,ns))
+   3875, Generating update to(u0i(:,ns))
+   3879, Generating update to(w0(:,ns))
+   3884, Generating update to(pif0(:,ns))
+   3888, Generating update to(w5(:,ns))
+enforce:
+   3915, Loop interchange produces reordered loop nest: 3916,3915
+         Generated vector simd code for the loop
+   3916, Loop not fused: function call before adjacent loop
+   3922, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   3931, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   3940, Loop interchange produces reordered loop nest: 3941,3940
+         Loop not vectorized: non-stride-1 array reference
+   3941, Loop not fused: dummy arguments read/write - possible conflict; try -Mvect=fuse
+         Loop not fused: unsafe variable with target attribute
+         FMA (fused multiply-add) instruction(s) generated
+   3947, Loop interchange produces reordered loop nest: 3948,3947
+         Loop not vectorized: non-stride-1 array reference
+   3948, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+enfxy:
+   3969, Memory copy idiom, loop replaced by call to __c_mcopy8
+   3976, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+gradu:
+   3993, Loop not fused: dummy arguments read/write - possible conflict; try -Mvect=fuse
+         Loop not fused: unsafe variable with target attribute
+   3997, Loop interchange produces reordered loop nest: 3998,3997
+         Generated vector simd code for the loop
+   4004, Loop interchange produces reordered loop nest: 4005,4006,4004
+         Generated vector simd code for the loop
+   4005, Loop not fused: dummy arguments read/write - possible conflict; try -Mvect=fuse
+         Loop not fused: unsafe variable with target attribute
+   4013, Loop not fused: function call before adjacent loop
+   4014, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 1 times
+gradx:
+   4035, Loop interchange produces reordered loop nest: 4036,4037,4035
+         Generated vector simd code for the loop
+   4036, Loop not fused: dummy arguments read/write - possible conflict; try -Mvect=fuse
+         Loop not fused: unsafe variable with target attribute
+   4044, Loop not fused: function call before adjacent loop
+   4045, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 1 times
+grady:
+   4065, Loop not fused: function call before adjacent loop
+   4069, Loop interchange produces reordered loop nest: 4070,4069
+         Generated vector simd code for the loop
+enfz:
+   4092, Loop interchange produces reordered loop nest: 4093,4092
+         Generated vector simd code for the loop
+   4093, Loop not fused: function call before adjacent loop
+   4102, Loop interchange produces reordered loop nest: 4103,4102
+         Generated vector simd code for the loop
+   4103, Loop not fused: function call before adjacent loop
+   4113, Loop interchange produces reordered loop nest: 4114,4113
+         Loop not vectorized: non-stride-1 array reference
+   4114, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+pint:
+   4150, Invariant if transformation
+         Loop not fused: function call before adjacent loop
+         Loop not fused: no successor loop
+         Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+         FMA (fused multiply-add) instruction(s) generated
+cint:
+   4434, Loop not fused: function call before adjacent loop
+         2 loops fused
+         Generated vector simd code for the loop
+         Residual loop unrolled 2 times (completely unrolled)
+   4438, Memory zero idiom, loop replaced by call to __c_mzero8
+   4439, Memory zero idiom, loop replaced by call to __c_mzero8
+   4441, Memory zero idiom, loop replaced by call to __c_mzero8
+   4442, Memory zero idiom, loop replaced by call to __c_mzero8
+   4453, Invariant if transformation
+         Loop not fused: function call before adjacent loop
+         Loop not fused: no successor loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   4675, Memory copy idiom, loop replaced by call to __c_mcopy8
+   4679, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   4683, Memory copy idiom, loop replaced by call to __c_mcopy8
+   4687, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   4691, Memory copy idiom, loop replaced by call to __c_mcopy8
+   4695, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   4699, Memory copy idiom, loop replaced by call to __c_mcopy8
+   4703, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+drdt:
+   4772, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   4773, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   4778, Loop interchange produces reordered loop nest: 4779,4778
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   4779, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   4789, Loop interchange produces reordered loop nest: 4790,4789
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   4790, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   4802, Loop interchange produces reordered loop nest: 4803,4802
+         Loop not vectorized: non-stride-1 array reference
+   4803, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+dpdt:
+   4874, Loop not vectorized/parallelized: too deeply nested
+   4875, Loop not vectorized/parallelized: too deeply nested
+   4878, FMA (fused multiply-add) instruction(s) generated
+   4881, FMA (fused multiply-add) instruction(s) generated
+   4883, Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   4890, FMA (fused multiply-add) instruction(s) generated
+   4892, FMA (fused multiply-add) instruction(s) generated
+   4895, FMA (fused multiply-add) instruction(s) generated
+   4897, FMA (fused multiply-add) instruction(s) generated
+   4899, FMA (fused multiply-add) instruction(s) generated
+   4901, FMA (fused multiply-add) instruction(s) generated
+   4903, FMA (fused multiply-add) instruction(s) generated
+   4905, FMA (fused multiply-add) instruction(s) generated
+   4907, FMA (fused multiply-add) instruction(s) generated
+   4909, FMA (fused multiply-add) instruction(s) generated
+   4920, Loop not vectorized/parallelized: contains call
+         FMA (fused multiply-add) instruction(s) generated
+   4921, FMA (fused multiply-add) instruction(s) generated
+   4947, Loop not vectorized/parallelized: too deeply nested
+   4948, Loop not vectorized/parallelized: too deeply nested
+   4949, Loop not vectorized/parallelized: too deeply nested
+   4950, FMA (fused multiply-add) instruction(s) generated
+   4953, FMA (fused multiply-add) instruction(s) generated
+   4955, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   4958, Loop distributed: 2 new loops
+         Loop interchange produces reordered loop nest: 4960,4958,4961
+         Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 4 times
+   4961, Loop not vectorized: data dependency
+   4973, Loop not vectorized/parallelized: contains call
+   4991, Zero trip check eliminated
+         Loop not vectorized/parallelized: contains call
+   5002, Copy in and copy out of drhodt in call to dcmpy
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   5004, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   5008, Memory copy idiom, loop replaced by call to __c_mcopy16
+   5011, Memory copy idiom, loop replaced by call to __c_mcopy16
+   5018, Loop not vectorized/parallelized: loop count too small
+   5020, Loop not vectorized: mixed data types
+   5028, Loop not vectorized/parallelized: contains call
+   5029, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   5033, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   5040, Loop interchange produces reordered loop nest: 5041,5042,5040
+         Generated vector simd code for the loop
+   5041, Loop not fused: function call before adjacent loop
+jie:
+   5091, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5092, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5093, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5094, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5100, Loop not vectorized/parallelized: too deeply nested
+   5101, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5102, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5103, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5104, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5105, Invariant if transformation
+         Loop not fused: function call before adjacent loop
+         Loop not fused: no successor loop
+         FMA (fused multiply-add) instruction(s) generated
+   5191, Loop not fused: different loop trip count
+         Loop not vectorized: mixed data types
+   5235, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   5263, Loop interchange produces reordered loop nest: 5265,5264,5263
+         Loop not vectorized: non-stride-1 array reference
+   5265, Loop not fused: different loop trip count
+   5274, Loop interchange produces reordered loop nest: 5275,5276,5274
+         Generated vector simd code for the loop
+   5291, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5292, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5293, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5294, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   5295, Invariant if transformation
+         Loop not fused: function call before adjacent loop
+         Loop not fused: no successor loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   5499, Loop interchange produces reordered loop nest: 5501,5500,5499
+         Generated vector simd code for the loop
+   5501, Loop not fused: function call before adjacent loop
+lorentz:
+   5533, FMA (fused multiply-add) instruction(s) generated
+   5536, FMA (fused multiply-add) instruction(s) generated
+   5538, FMA (fused multiply-add) instruction(s) generated
+   5540, FMA (fused multiply-add) instruction(s) generated
+   5543, FMA (fused multiply-add) instruction(s) generated
+   5545, FMA (fused multiply-add) instruction(s) generated
+   5546, FMA (fused multiply-add) instruction(s) generated
+   5549, FMA (fused multiply-add) instruction(s) generated
+   5558, FMA (fused multiply-add) instruction(s) generated
+   5559, FMA (fused multiply-add) instruction(s) generated
+   5564, Loop not vectorized/parallelized: contains call
+   5565, FMA (fused multiply-add) instruction(s) generated
+   5571, FMA (fused multiply-add) instruction(s) generated
+initialize:
+   5597, Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+   5624, Loop not vectorized/parallelized: contains call
+   5626, Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+loader_wrapper:
+   5664, Loop not vectorized/parallelized: contains call
+poisson:
+   5942, Loop not vectorized/parallelized: too deeply nested
+   5989, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   5991, Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+   6032, Loop distributed: 2 new loops
+         Loop interchange produces reordered loop nest: 6035,6032
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   6035, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   6047, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   6049, Loop not fused: different loop trip count
+   6050, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   6051, Loop unrolled 2 times (completely unrolled)
+   6059, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   6061, Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+   6073, Generating update to(phi(:,:,:))
+ampere:
+   6094, Loop not vectorized/parallelized: too deeply nested
+   6103, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   6105, Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+   6120, Memory zero idiom, loop replaced by call to __c_mzero8
+   6126, Memory zero idiom, loop replaced by call to __c_mzero8
+   6140, Loop distributed: 2 new loops
+         Loop interchange produces reordered loop nest: 6143,6140
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   6143, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   6155, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   6157, Loop not fused: different loop trip count
+   6158, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   6159, Loop unrolled 2 times (completely unrolled)
+   6167, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   6169, Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+field:
+   6217, Generating update to(ey(:,:,:),ex(:,:,:),phi(:,:,:),ez(:,:,:))
+generate_3d_field:
+   6232, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   6234, Memory copy idiom, loop replaced by call to __c_mcopy8
+   6236, Memory copy idiom, loop replaced by call to __c_mcopy8
+   6242, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+push_wrapper:
+   6258, Loop not vectorized/parallelized: contains call
+jpar0:
+   6399, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   6400, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   6401, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   6405, Memory zero idiom, loop replaced by call to __c_mzero8
+   6406, Memory zero idiom, loop replaced by call to __c_mzero8
+   6407, Memory zero idiom, loop replaced by call to __c_mzero8
+   6408, Memory zero idiom, loop replaced by call to __c_mzero8
+   6411, Invariant if transformation
+         Loop not fused: function call before adjacent loop
+         Loop not fused: no successor loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   6517, Loop interchange produces reordered loop nest: 6519,6518,6517
+         Generated vector simd code for the loop
+   6519, Loop not fused: complex flow graph
+   6527, Loop interchange produces reordered loop nest: 6529,6528,6527
+         Generated vector simd code for the loop
+   6529, Loop not fused: function call before adjacent loop
+   6536, Copy in of upa00 in call to mpi_allreduce
+         Copy in and copy out of upa0t in call to mpi_allreduce
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   6542, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   6545, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+den0_phi:
+   6580, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   6581, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   6583, Memory zero idiom, loop replaced by call to __c_mzero8
+   6584, Memory zero idiom, loop replaced by call to __c_mzero8
+   6587, Invariant if transformation
+         Loop not fused: function call before adjacent loop
+         Loop not fused: no successor loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   6642, Loop interchange produces reordered loop nest: 6644,6643,6642
+         Generated vector simd code for the loop
+   6644, Loop not fused: function call before adjacent loop
+countw:
+   6677, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+   6691, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop containing reductions
+   6700, Memory zero idiom, loop replaced by call to __c_mzero4
+   6701, Memory zero idiom, loop replaced by call to __c_mzero4
+   6702, Memory zero idiom, loop replaced by call to __c_mzero8
+   6703, Memory zero idiom, loop replaced by call to __c_mzero8
+   6704, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+   6729, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+setw:
+   6754, !$omp target teams loop
+       6753, Generating map(from:w101(1:mme),w011(1:mme),w001(1:mme)) 
+             Generating map(to:u3e(1:mme)) 
+             Generating map(from:w110(1:mme),w000(1:mme),w010(1:mme),w100(1:mme)) 
+             Generating map(to:x3e(1:mme),y3e(1:mme),z3e(1:mme),mue3(1:mme),bfld(:,:),t0e(:)) 
+             Generating map(from:w111(1:mme)) 
+             Generating map(to:thfnz(:)) 
+       6754, Generating "nvkernel_setw__F1L6754_5" GPU kernel
+             Generating Tesla code
+         6755, Loop parallelized across teams, threads(128) ! blockidx%x threadidx%x
+       6754, Generating Multicore code
+         6755, Loop parallelized across threads
+   6754, Generating implicit map(tofrom:t0e(:),thfnz(:),bfld(:,:)) 
+   6755, Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+fltx:
+   6824, Loop not fused: complex flow graph
+   6825, Loop not vectorized: mixed data types
+   6851, Loop distributed: 2 new loops
+         Loop interchange produces reordered loop nest: 6854,6851
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   6854, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   6866, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   6869, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   6870, Loop unrolled 2 times (completely unrolled)
+   6879, Generated vector simd code for the loop
+   6883, Loop not vectorized/parallelized: contains call
+   6884, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   6888, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   6895, Loop not vectorized/parallelized: contains call
+   6896, Array assignment / Forall at line 6897 fused
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   6903, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   6905, Array assignment / Forall at line 6906 fused
+         Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+   6908, Array assignment / Forall at line 6909 fused
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   6914, Generated vector simd code for the loop
+   6918, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+         Loop not vectorized: mixed data types
+   6919, Copy in and copy out of temp3dxy in call to filtbl
+         Memory copy idiom, loop replaced by call to __c_mcopy16
+   6922, Loop not vectorized/parallelized: contains call
+   6923, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   6927, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   6934, Loop interchange produces reordered loop nest: 6935,6936,6934
+         Generated vector simd code for the loop
+   6935, Loop not fused: function call before adjacent loop
+   6947, Loop not fused: different loop trip count
+   6948, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   6949, Loop unrolled 2 times (completely unrolled)
+   6956, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+         FMA (fused multiply-add) instruction(s) generated
+   6959, Loop not fused: different loop trip count
+   6960, Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+   6966, Generated vector simd code for the loop
+fltd:
+   6987, FMA (fused multiply-add) instruction(s) generated
+   6988, Invariant if transformation
+         Loop not fused: no successor loop
+         Loop not vectorized: mixed data types
+   7010, Generated vector simd code for the loop
+   7014, Loop not vectorized/parallelized: contains call
+   7015, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7019, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7026, Loop not vectorized/parallelized: contains call
+   7027, Array assignment / Forall at line 7028 fused
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   7034, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   7036, Array assignment / Forall at line 7037 fused
+         Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+   7039, Array assignment / Forall at line 7040 fused
+         Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   7045, Generated vector simd code for the loop
+   7049, Loop not vectorized/parallelized: loop count too small
+         Loop not vectorized: mixed data types
+   7052, Loop not vectorized/parallelized: contains call
+   7053, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7057, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7064, Loop interchange produces reordered loop nest: 7065,7066,7064
+         Generated vector simd code for the loop
+   7065, Loop not fused: function call before adjacent loop
+dcmpy:
+   7094, Generated vector simd code for the loop
+   7098, Loop not vectorized/parallelized: contains call
+   7099, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7103, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7110, Memory copy idiom, loop replaced by call to __c_mcopy16
+en3:
+   7126, FMA (fused multiply-add) instruction(s) generated
+blendf:
+   7150, Loop not fused: different loop trip count
+         Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+   7159, 2 loops fused
+   7167, Generated vector simd code for the loop
+   7172, Loop not vectorized/parallelized: too deeply nested
+   7175, Loop not vectorized/parallelized: contains call
+   7185, Loop not vectorized/parallelized: too deeply nested
+   7186, Loop not vectorized/parallelized: too deeply nested
+   7187, Loop not fused: function call before adjacent loop
+   7190, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   7202, Loop interchange produces reordered loop nest: 7203,7202
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7203, Zero trip check eliminated
+filtbl:
+   7282, Loop not vectorized/parallelized: contains call
+   7284, Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+   7296, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7303, Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+   7312, Memory copy idiom, loop replaced by call to __c_mcopy16
+   7317, Loop not fused: different loop trip count
+   7319, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   7325, Loop not fused: different loop trip count
+   7327, Zero trip check eliminated
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   7333, Loop not fused: function call before adjacent loop
+   7335, Generated vector simd code for the loop containing reductions
+   7341, Memory copy idiom, loop replaced by call to __c_mcopy16
+   7346, Loop not vectorized/parallelized: contains call
+   7348, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   7358, Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+   7367, Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: mixed data types
+         Loop not vectorized: may not be beneficial
+   7376, Loop interchange produces reordered loop nest: 7377,7376
+         Generated vector simd code for the loop
+   7377, Loop not fused: function call before adjacent loop
+   7382, Copy in of lbfs in call to mpi_sendrecv
+         Copy in and copy out of rbfr in call to mpi_sendrecv
+         Memory copy idiom, loop replaced by call to __c_mcopy16
+   7389, Loop interchange produces reordered loop nest: 7390,7389
+         Generated vector simd code for the loop
+   7390, Loop not fused: complex flow graph
+   7396, Loop interchange produces reordered loop nest: 7397,7396
+         Generated vector simd code for the loop
+   7397, Loop not fused: function call before adjacent loop
+ldel:
+   7430, Loop not vectorized/parallelized: potential early exits
+   7438, FMA (fused multiply-add) instruction(s) generated
+   7450, FMA (fused multiply-add) instruction(s) generated
+   7452, FMA (fused multiply-add) instruction(s) generated
+   7458, FMA (fused multiply-add) instruction(s) generated
+   7461, FMA (fused multiply-add) instruction(s) generated
+   7464, FMA (fused multiply-add) instruction(s) generated
+   7466, FMA (fused multiply-add) instruction(s) generated
+   7468, FMA (fused multiply-add) instruction(s) generated
+   7469, FMA (fused multiply-add) instruction(s) generated
+   7471, FMA (fused multiply-add) instruction(s) generated
+   7475, FMA (fused multiply-add) instruction(s) generated
+   7497, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+ldel_new:
+   7585, Loop not vectorized/parallelized: potential early exits
+   7593, FMA (fused multiply-add) instruction(s) generated
+   7605, FMA (fused multiply-add) instruction(s) generated
+   7607, FMA (fused multiply-add) instruction(s) generated
+   7613, FMA (fused multiply-add) instruction(s) generated
+   7616, FMA (fused multiply-add) instruction(s) generated
+   7619, FMA (fused multiply-add) instruction(s) generated
+   7621, FMA (fused multiply-add) instruction(s) generated
+   7623, FMA (fused multiply-add) instruction(s) generated
+   7625, FMA (fused multiply-add) instruction(s) generated
+   7626, FMA (fused multiply-add) instruction(s) generated
+   7628, FMA (fused multiply-add) instruction(s) generated
+   7633, FMA (fused multiply-add) instruction(s) generated
+   7640, FMA (fused multiply-add) instruction(s) generated
+   7670, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+   7689, Generating update to(x2e(:))
+   7693, Generating update to(x3e(:))
+   7697, Generating update to(y2e(:))
+   7701, Generating update to(y3e(:))
+   7705, Generating update to(z2e(:))
+   7709, Generating update to(z3e(:))
+   7713, Generating update to(u2e(:))
+   7717, Generating update to(u3e(:))
+   7721, Generating update to(w2e(:))
+   7725, Generating update to(w3e(:))
+   7729, Generating update to(mue2(:))
+   7733, Generating update to(mue3(:))
+   7738, Generating update to(mue(:))
+   7742, Generating update to(xie(:))
+   7746, Generating update to(z0e(:))
+   7750, Generating update to(pze(:))
+   7754, Generating update to(eke(:))
+   7758, Generating update to(u0e(:))
+   7762, Generating update to(w0e(:))
+   7767, Generating update to(pif0e(:))
+   7771, Generating update to(w5e(:))
+avge:
+   7805, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   7806, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   7807, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   7861, Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+   7901, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+avgi:
+   7933, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   7934, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   7935, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   7989, Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+   8029, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+rstpe:
+   8077, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8078, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8080, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8081, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+   8082, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8083, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8085, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   8138, Loop unrolled 2 times (completely unrolled)
+   8139, Loop unrolled 2 times (completely unrolled)
+   8140, Loop unrolled 2 times (completely unrolled)
+   8141, Loop unrolled 2 times (completely unrolled)
+   8142, Loop unrolled 2 times (completely unrolled)
+   8158, Loop unrolled 2 times (completely unrolled)
+   8159, Loop unrolled 2 times (completely unrolled)
+   8160, Loop unrolled 2 times (completely unrolled)
+   8161, Loop unrolled 2 times (completely unrolled)
+   8162, Loop unrolled 2 times (completely unrolled)
+   8180, Array assignment / Forall at line 8189 fused
+         Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: too deeply nested
+         Generated vector simd code for the loop
+   8199, Loop not fused: different controlling conditions
+         Loop not vectorized/parallelized: too deeply nested
+   8200, FMA (fused multiply-add) instruction(s) generated
+   8202, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+   8211, Loop not fused: different loop trip count
+         Loop not vectorized/parallelized: too deeply nested
+   8212, FMA (fused multiply-add) instruction(s) generated
+   8214, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+   8223, Array assignment / Forall at line 8232 fused
+         Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: too deeply nested
+         Generated vector simd code for the loop
+   8242, Loop not fused: different controlling conditions
+         Loop not vectorized/parallelized: too deeply nested
+   8243, FMA (fused multiply-add) instruction(s) generated
+   8245, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+   8254, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: too deeply nested
+   8255, FMA (fused multiply-add) instruction(s) generated
+   8257, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+   8298, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8299, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8300, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8301, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+   8353, Loop unrolled 2 times (completely unrolled)
+   8354, Loop unrolled 2 times (completely unrolled)
+   8355, Loop unrolled 2 times (completely unrolled)
+   8356, Loop unrolled 2 times (completely unrolled)
+   8357, Loop unrolled 2 times (completely unrolled)
+   8369, Loop unrolled 2 times (completely unrolled)
+   8370, Loop unrolled 2 times (completely unrolled)
+   8371, Loop unrolled 2 times (completely unrolled)
+   8372, Loop unrolled 2 times (completely unrolled)
+   8373, Loop unrolled 2 times (completely unrolled)
+   8411, Loop interchange produces reordered loop nest: 8412,8411
+         Generated vector simd code for the loop containing reductions
+   8412, Loop not fused: function call before adjacent loop
+gam:
+   8449, Loop not vectorized/parallelized: contains call
+   8462, Loop not fused: function call before adjacent loop
+   8468, Memory copy idiom, array assignment replaced by call to pgf90_mcopyz16
+         Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+gkpsl:
+   8514, Loop not vectorized/parallelized: too deeply nested
+   8520, FMA (fused multiply-add) instruction(s) generated
+   8522, Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   8528, FMA (fused multiply-add) instruction(s) generated
+   8530, FMA (fused multiply-add) instruction(s) generated
+   8533, FMA (fused multiply-add) instruction(s) generated
+   8535, FMA (fused multiply-add) instruction(s) generated
+   8537, FMA (fused multiply-add) instruction(s) generated
+   8539, FMA (fused multiply-add) instruction(s) generated
+   8541, FMA (fused multiply-add) instruction(s) generated
+   8543, FMA (fused multiply-add) instruction(s) generated
+   8545, FMA (fused multiply-add) instruction(s) generated
+   8547, FMA (fused multiply-add) instruction(s) generated
+   8549, FMA (fused multiply-add) instruction(s) generated
+   8572, FMA (fused multiply-add) instruction(s) generated
+   8574, Loop not vectorized/parallelized: contains call
+   8575, FMA (fused multiply-add) instruction(s) generated
+   8589, Loop not fused: complex flow graph
+         Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+   8620, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   8621, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   8622, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   8624, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   8625, Copy in of myden in call to mpi_allreduce
+         Copy in and copy out of rho1 in call to mpi_allreduce
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   8634, Generated vector simd code for the loop
+   8639, Loop not vectorized/parallelized: contains call
+   8640, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8644, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8650, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8654, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8662, Loop not fused: function call before adjacent loop
+   8663, Generated vector simd code for the loop
+   8673, Loop not fused: function call before adjacent loop
+   8675, Loop not fused: different loop trip count
+   8676, Generated vector simd code for the loop
+   8680, Generated vector simd code for the loop
+   8691, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   8694, Loop not vectorized: may not be beneficial
+   8704, Loop not vectorized/parallelized: contains call
+   8705, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8709, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8720, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8725, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8732, Loop interchange produces reordered loop nest: 8733,8734,8732
+         Generated vector simd code for the loop
+   8733, Loop not fused: function call before adjacent loop
+   8746, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   8750, Loop not fused: function call before adjacent loop
+   8752, Generated vector simd code for the loop
+   8760, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   8761, Loop interchange produces reordered loop nest: 8762,8763,8761
+         Generated vector simd code for the loop
+   8762, Loop not fused: function call before adjacent loop
+ezampl:
+   8805, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+   8806, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+   8808, Invariant if transformation
+         Loop not fused: no successor loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: mixed data types
+         FMA (fused multiply-add) instruction(s) generated
+   8888, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   8889, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   8890, Copy in of myden in call to mpi_allreduce
+         Copy in and copy out of jtmp in call to mpi_allreduce
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   8899, Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   8904, Loop not vectorized/parallelized: contains call
+   8905, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8909, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8914, FMA (fused multiply-add) instruction(s) generated
+   8915, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8919, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8929, Generated vector simd code for the loop
+   8941, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8945, Memory copy idiom, loop replaced by call to __c_mcopy16
+   8950, Loop not vectorized/parallelized: contains call
+   8951, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8955, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   8961, Loop interchange produces reordered loop nest: 8962,8963,8961
+         Generated vector simd code for the loop
+   8962, Loop not fused: function call before adjacent loop
+dpdtl:
+   9012, Loop not vectorized/parallelized: too deeply nested
+   9018, FMA (fused multiply-add) instruction(s) generated
+   9020, Loop not fused: complex flow graph
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   9026, FMA (fused multiply-add) instruction(s) generated
+   9028, FMA (fused multiply-add) instruction(s) generated
+   9031, FMA (fused multiply-add) instruction(s) generated
+   9033, FMA (fused multiply-add) instruction(s) generated
+   9035, FMA (fused multiply-add) instruction(s) generated
+   9037, FMA (fused multiply-add) instruction(s) generated
+   9039, FMA (fused multiply-add) instruction(s) generated
+   9041, FMA (fused multiply-add) instruction(s) generated
+   9043, FMA (fused multiply-add) instruction(s) generated
+   9045, FMA (fused multiply-add) instruction(s) generated
+   9068, FMA (fused multiply-add) instruction(s) generated
+   9070, Loop not vectorized/parallelized: contains call
+   9071, FMA (fused multiply-add) instruction(s) generated
+   9084, Loop not fused: complex flow graph
+         Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+   9106, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   9108, Memory copy idiom, array assignment replaced by call to pgf90_mcopy8
+   9109, Copy in of myden in call to mpi_allreduce
+         Copy in and copy out of drhodt in call to mpi_allreduce
+         Memory copy idiom, loop replaced by call to __c_mcopy8
+   9118, Generated vector simd code for the loop
+   9123, Loop not vectorized/parallelized: contains call
+   9124, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9128, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9134, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9138, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9148, Generated vector simd code for the loop
+   9158, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9163, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9168, Loop not vectorized/parallelized: contains call
+   9169, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9173, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9180, Loop interchange produces reordered loop nest: 9181,9182,9180
+         Generated vector simd code for the loop
+   9181, Loop not fused: complex flow graph
+   9189, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   9193, Loop not fused: function call before adjacent loop
+   9195, Generated vector simd code for the loop
+   9205, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+   9206, Loop interchange produces reordered loop nest: 9207,9208,9206
+         Generated vector simd code for the loop
+   9207, Loop not fused: function call before adjacent loop
+ftcamp:
+   9239, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   9246, Loop not fused: different loop trip count
+         2 loops fused
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: may not be beneficial
+   9261, Loop not fused: dependence chain to sibling loop
+   9264, Loop not vectorized: data dependency
+   9271, Loop not fused: scalar dependence chain to sibling loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: may not be beneficial
+   9279, Loop not fused: scalar dependence chain to sibling loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: may not be beneficial
+   9287, Loop not fused: scalar dependence chain to sibling loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: may not be beneficial
+   9295, Loop not fused: scalar dependence chain to sibling loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: may not be beneficial
+   9303, Loop not vectorized: non-stride-1 array reference
+         Loop not vectorized: may not be beneficial
+   9316, Loop not vectorized/parallelized: contains call
+   9325, Loop not vectorized/parallelized: contains call
+colli:
+   9356, FMA (fused multiply-add) instruction(s) generated
+   9359, FMA (fused multiply-add) instruction(s) generated
+   9361, FMA (fused multiply-add) instruction(s) generated
+   9363, FMA (fused multiply-add) instruction(s) generated
+   9366, FMA (fused multiply-add) instruction(s) generated
+   9368, FMA (fused multiply-add) instruction(s) generated
+   9369, FMA (fused multiply-add) instruction(s) generated
+   9372, FMA (fused multiply-add) instruction(s) generated
+   9387, Loop not vectorized/parallelized: contains call
+   9388, FMA (fused multiply-add) instruction(s) generated
+   9394, FMA (fused multiply-add) instruction(s) generated
+flty:
+   9416, Invariant if transformation
+         Loop not fused: no successor loop
+   9449, Generated vector simd code for the loop
+   9454, Loop not vectorized/parallelized: contains call
+   9455, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9459, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9465, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9469, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9475, Loop not vectorized/parallelized: loop count too small
+   9477, Generated vector simd code for the loop
+   9485, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9490, Memory copy idiom, loop replaced by call to __c_mcopy16
+   9498, Loop not vectorized/parallelized: contains call
+   9499, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9503, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9510, Loop interchange produces reordered loop nest: 9511,9512,9510
+         Generated vector simd code for the loop
+   9511, Loop not fused: function call before adjacent loop
+mdamp:
+   9546, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   9547, Loop interchange produces reordered loop nest: 9547,9549,9548
+   9548, Generated vector simd code for the loop
+   9556, Loop not vectorized/parallelized: contains call
+   9557, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9561, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9566, Loop not fused: different loop trip count
+         Loop not vectorized/parallelized: loop count too small
+         Loop not vectorized: mixed data types
+   9568, Loop not fused: function call before adjacent loop
+   9570, Loop not fused: different loop trip count
+         Loop not vectorized: may not be beneficial
+   9576, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 7 times (completely unrolled)
+mdampa:
+   9606, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   9607, Loop interchange produces reordered loop nest: 9607,9609,9608
+   9608, Generated vector simd code for the loop
+   9616, Loop not vectorized/parallelized: contains call
+   9617, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9621, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9626, Loop not fused: different loop trip count
+         Loop not vectorized/parallelized: loop count too small
+         Loop not vectorized: mixed data types
+   9628, Loop not fused: function call before adjacent loop
+   9630, Loop not fused: different loop trip count
+         Loop not vectorized: may not be beneficial
+   9636, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 7 times (completely unrolled)
+mdampd:
+   9667, Memory zero idiom, array assignment replaced by call to pgf90_mzeroz16
+   9668, Loop interchange produces reordered loop nest: 9668,9670,9669
+   9669, Generated vector simd code for the loop
+   9677, Loop not vectorized/parallelized: contains call
+   9678, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9682, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9687, Loop not fused: different loop trip count
+         Loop not vectorized/parallelized: loop count too small
+         Loop not vectorized: mixed data types
+   9689, Outer loop unrolled 5 times (completely unrolled)
+   9691, Loop not fused: function call before adjacent loop
+         5 loops fused
+         Loop not vectorized: may not be beneficial
+zon:
+   9711, Loop distributed: 3 new loops
+         Strip mine loop created
+         Loop interchange produces reordered loop nest: 9714,9711
+         Loop not fused: function call before adjacent loop
+         Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   9714, Loop not fused: different loop trip count
+   9727, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+joule:
+   9745, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+         Generated vector simd code for the loop
+         FMA (fused multiply-add) instruction(s) generated
+   9758, Loop interchange produces reordered loop nest: 9759,9758
+         Generated vector simd code for the loop containing reductions
+         FMA (fused multiply-add) instruction(s) generated
+   9759, Loop not fused: function call before adjacent loop
+         FMA (fused multiply-add) instruction(s) generated
+neq0:
+   9787, Loop not fused: function call before adjacent loop
+         Loop not vectorized/parallelized: loop count too small
+   9790, Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+   9794, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+neq8:
+   9817, Generated vector simd code for the loop
+   9821, Loop not vectorized/parallelized: contains call
+   9822, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9826, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9833, Memory zero idiom, loop replaced by call to __c_mzero16
+   9837, Loop not vectorized/parallelized: contains call
+   9838, Loop not fused: function call before adjacent loop
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9842, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 8 times
+   9848, Loop interchange produces reordered loop nest: 9849,9850,9848
+         Loop not vectorized: mixed data types
+   9849, Loop not fused: function call before adjacent loop
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+phixy:
+     75, Loop not vectorized/parallelized: contains call
+phixz:
+    122, Loop not fused: function call before adjacent loop
+    123, Generated vector simd code for the loop
+    143, Loop not vectorized/parallelized: contains call
+    147, Loop not vectorized/parallelized: contains call
+mphxy:
+    189, Loop not vectorized/parallelized: contains call
+mphxz:
+    235, Loop not fused: function call before adjacent loop
+    236, Generated vector simd code for the loop
+    252, Loop not vectorized/parallelized: contains call
+    256, Loop not vectorized/parallelized: contains call
+histout:
+    290, Loop not vectorized/parallelized: contains call
+    294, Loop not vectorized/parallelized: contains call
+    299, Loop not vectorized/parallelized: contains call
+    303, Loop interchange produces reordered loop nest: 304,305,303
+         Generated vector simd code for the loop
+    311, Loop not vectorized/parallelized: contains call
+    315, Loop interchange produces reordered loop nest: 316,317,315
+         Generated vector simd code for the loop
+    323, Loop not vectorized/parallelized: contains call
+    327, Loop not vectorized/parallelized: contains call
+    330, Loop not vectorized/parallelized: contains call
+    355, Loop not vectorized/parallelized: contains call
+    359, Loop not vectorized/parallelized: contains call
+    364, Loop not vectorized/parallelized: contains call
+    366, Loop not vectorized/parallelized: contains call
+aphir:
+    403, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    407, Loop not fused: function call before adjacent loop
+    409, Generated vector simd code for the loop
+    428, Loop not vectorized/parallelized: contains call
+    434, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+dump3d:
+    488, Loop not fused: function call before adjacent loop
+    490, Generated vector simd code for the loop
+    511, Loop not vectorized/parallelized: contains call
+    516, Loop not vectorized/parallelized: contains call
+pol2d:
+    551, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+    570, Loop not vectorized/parallelized: too deeply nested
+    573, Loop not vectorized/parallelized: contains call
+    583, Loop not fused: function call before adjacent loop
+    586, Loop not fused: different loop trip count
+         Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+    590, Loop not vectorized: non-stride-1 array reference
+         Loop unrolled 2 times
+    603, FMA (fused multiply-add) instruction(s) generated
+    606, FMA (fused multiply-add) instruction(s) generated
+    608, Loop not vectorized/parallelized: contains call
+    609, FMA (fused multiply-add) instruction(s) generated
+    612, FMA (fused multiply-add) instruction(s) generated
+    615, FMA (fused multiply-add) instruction(s) generated
+    617, FMA (fused multiply-add) instruction(s) generated
+    632, Memory zero idiom, array assignment replaced by call to pgf90_mzero4
+    633, Memory zero idiom, array assignment replaced by call to pgf90_mzero8
+    638, FMA (fused multiply-add) instruction(s) generated
+    641, FMA (fused multiply-add) instruction(s) generated
+    645, FMA (fused multiply-add) instruction(s) generated
+    646, Memory zero idiom, loop replaced by call to __c_mzero16
+    647, Loop not vectorized/parallelized: contains call
+    648, FMA (fused multiply-add) instruction(s) generated
+    651, FMA (fused multiply-add) instruction(s) generated
+    654, FMA (fused multiply-add) instruction(s) generated
+    656, FMA (fused multiply-add) instruction(s) generated
+    658, FMA (fused multiply-add) instruction(s) generated
+    660, FMA (fused multiply-add) instruction(s) generated
+    664, FMA (fused multiply-add) instruction(s) generated
+    666, FMA (fused multiply-add) instruction(s) generated
+    667, FMA (fused multiply-add) instruction(s) generated
+    684, FMA (fused multiply-add) instruction(s) generated
+    692, Loop not fused: function call before adjacent loop
+         Loop not vectorized: mixed data types
+    718, Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+    720, Loop not vectorized/parallelized: contains call
+         FMA (fused multiply-add) instruction(s) generated
+    721, FMA (fused multiply-add) instruction(s) generated
+    729, Loop not vectorized/parallelized: contains call
+timephi:
+    764, Loop not fused: different loop trip count
+         Generated vector simd code for the loop
+    768, Loop not fused: function call before adjacent loop
+    770, Generated vector simd code for the loop
+    786, Memory copy idiom, loop replaced by call to __c_mcopy8
+    799, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
+revers:
+     19, Loop not vectorized/parallelized: not countable
+     23, FMA (fused multiply-add) instruction(s) generated
+revers_int8:
+     43, Loop not vectorized/parallelized: not countable
+     47, FMA (fused multiply-add) instruction(s) generated
+srcbes:
+     64, FMA (fused multiply-add) instruction(s) generated
+     66, FMA (fused multiply-add) instruction(s) generated
+     71, FMA (fused multiply-add) instruction(s) generated
+     74, FMA (fused multiply-add) instruction(s) generated
+nvfortran-Warning-CUDA Fortran or OpenACC GPU targets disables -Mbounds
